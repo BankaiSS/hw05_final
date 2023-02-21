@@ -11,7 +11,7 @@ from .models import Follow, Group, Post, User
 
 @cache_page(CACHE_SEC, key_prefix='index_page')
 def index(request):
-    post_list = Post.objects.all()
+    post_list = Post.objects.select_related().all()
     page_obj = paginate(request, post_list)
     context = {
         'page_obj': page_obj,
@@ -34,7 +34,7 @@ def profile(request, username):
     author = get_object_or_404(User, username=username)
     following = request.user.is_authenticated
     if following:
-        following = author.following.filter(user=request.user)
+        following = author.following.filter(user=request.user).exists()
     post_list = author.posts.all()
     page_obj = paginate(request, post_list)
     context = {
