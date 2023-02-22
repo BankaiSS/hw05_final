@@ -7,6 +7,7 @@ from django.core.cache import cache
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import Client, TestCase, override_settings
 from django.urls import reverse
+from yatube.settings import SMALL
 
 from ..forms import PostForm
 from ..models import Comment, Group, Post, User
@@ -85,6 +86,8 @@ class PostCreateFormTests(TestCase):
         self.assertEqual(post.text, form_data['text'])
         self.assertEqual(post.author, self.auth_user)
         self.assertEqual(post.group_id, form_data['group'])
+        self.assertEqual(post.image.name, SMALL)
+
 
     def test_create_task(self):
         """Валидная форма создает запись в Posts."""

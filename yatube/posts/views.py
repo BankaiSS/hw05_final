@@ -11,7 +11,7 @@ from .models import Follow, Group, Post, User
 
 @cache_page(CACHE_SEC, key_prefix='index_page')
 def index(request):
-    post_list = Post.objects.select_related().all()
+    post_list = Post.objects.select_related('author', 'group').all()
     page_obj = paginate(request, post_list)
     context = {
         'page_obj': page_obj,

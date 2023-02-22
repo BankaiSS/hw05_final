@@ -154,3 +154,5 @@ CACHES = {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
     }
 }
+
+SMALL = 'posts/small.gif'

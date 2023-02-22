@@ -61,6 +61,10 @@
                 {{ comment.author.username }}
               </a>
             </h5>
+            <div class="col-md-auto"
+            <i>
+              <small class="text-muted">{{ comment.created|date:"d E Y"}}</small>
+            </i>
             <p>
               {{ comment.text }}
             </p>
