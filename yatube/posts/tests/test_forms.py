@@ -88,7 +88,6 @@ class PostCreateFormTests(TestCase):
         self.assertEqual(post.group_id, form_data['group'])
         self.assertEqual(post.image.name, SMALL)
 
-
     def test_create_task(self):
         """Валидная форма создает запись в Posts."""
         post_count = Post.objects.count()
